@@ -1,5 +1,7 @@
 muypicky/settings/local.py
 muypicky/settings/base.py
+muypicky/oldsettings.py
 .py[cod]
 local.py
 base.py
+oldsettings.py
