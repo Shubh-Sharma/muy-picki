@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ block.super }}
+<hr>
+<div class="text-center">
+	<a class="btn btn-primary" href="{% url 'login' %}">Login</a>&nbsp;
+	<a class="btn btn-success" href="{% url 'register' %}">Register</a>
+</div>
+
+{% endblock %}
