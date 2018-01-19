@@ -20,22 +20,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'l%br82@!#nnai5j%p#fwfd&=^kzaifzd2syy+zp!67*k!oy3mz'
+SECRET_KEY = os.environ.get('SECRET_KEY','l%br82@!#nnai5j%p#fwfd&=^kzaifzd2syy+zp!67*k!oy3mz')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'youremail@gmail.com' 
-EMAIL_HOST_PASSWORD = 'yourpassword'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'Your Name <you@email.com>'
+
+# EMAIL_HOST = 'smtp.mailgun.org'
+# EMAIL_HOST_USER = 'postmaster@sandboxc0aac19c17f44ac9ba81f15a7f6c005e.mailgun.org'
+# EMAIL_HOST_PASSWORD = '3217b9139091a70df4768054db905be4'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 ADMINS = (
-    ('You', 'you@email.com'),
+    ('Administrator', 'postmaster@sandboxc0aac19c17f44ac9ba81f15a7f6c005e.mailgun.org'),
 )
 MANAGERS = ADMINS
 
@@ -90,10 +90,22 @@ WSGI_APPLICATION = 'muypicky.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'trydjango1-11',
+        'USER': 'postgres',
+        'PASSWORD': 'pass1234',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -134,8 +146,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
-
 LOGOUT_REDIRECT_URL = '/login/'
 
 LOGIN_REDIRECT_URL = "/"
@@ -151,3 +161,17 @@ CSRF_COOKIE_SECURE              = False
 SECURE_HSTS_SECONDS             = None
 SECURE_HSTS_INCLUDE_SUBDOMAINS  = False
 SECURE_FRAME_DENY               = False
+
+
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+STATIC_ROOT = os.path.join(BASE_DIR, "live-static", "static-root")
+
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "live-static", "media-root")

@@ -22,7 +22,6 @@ from menus.views import HomeView
 from profiles.views import ProfileFollowToggle, RegisterView, activate_user_view
 
 urlpatterns = [
-    url(r'^$', HomeView.as_view(), name='home'),
     url(r'^about/$', TemplateView.as_view(template_name="about.html"), name='about'),
     url(r'^contact/$', TemplateView.as_view(template_name="contact.html"), name='contact'),
     url(r'^register/$', RegisterView.as_view(), name='register'),
@@ -34,4 +33,5 @@ urlpatterns = [
     url(r'^u/', include('profiles.urls', namespace='profiles')),
     url(r'^items/', include('menus.urls', namespace='menus')),
     url(r'^admin/', admin.site.urls),
+    url(r'^$', HomeView.as_view(), name='home'),
 ]

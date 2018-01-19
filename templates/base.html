@@ -1,7 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang=en>
 
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>{% block head_title %}MuyPicky.com{% endblock head_title %}</title>
 	{% include 'snippets/css.html' %}
 </head>
@@ -22,15 +26,15 @@
 		  <!-- Wrapper for slides -->
 		  <div class="carousel-inner">
 		    <div class="item active">
-		      <img src="https://images.pexels.com/photos/5317/food-salad-restaurant-person.jpg?w=940&h=650&auto=compress&cs=tinysrgb" alt="Los Angeles">
+		      <img src="{% static 'img/img1.jpeg' %}" alt="Los Angeles">
 		    </div>
 
 		    <div class="item">
-		      <img src="https://images.pexels.com/photos/76093/pexels-photo-76093.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" alt="Chicago">
+		      <img src="{% static 'img/img2.jpeg' %}" alt="Chicago">
 		    </div>
 
 		    <div class="item">
-		      <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" alt="New York">
+		      <img src="{% static 'img/img1.jpeg' %}" alt="New York">
 		    </div>
 		  </div>
 

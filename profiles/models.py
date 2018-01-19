@@ -45,12 +45,11 @@ class Profile(models.Model):
 			path_ = reverse("activate", kwargs={"code":self.activation_key})
 			subject = 'Activate Account'
 			from_email = settings.DEFAULT_FROM_EMAIL
-			message = f'Activate your account here: {path_}'
+			message = f'Activate your account here: localhost:8000/{path_}'
 			recipient_list = [self.user.email]
-			html_message = f'<p>Activate your account here: {path_}</p>'
+			html_message = f'<p>Activate your account here: <a href="localhost:8000/{path_}">{path_}</a></p>'
 			print(html_message)
-			# send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_message)
-			sent_mail = False
+			sent_mail = send_mail(subject, message, from_email, recipient_list, fail_silently=False, html_message=html_message) 
 			return sent_mail
 
 def post_save_user_reciever(sender, instance, created, *args, **kwargs):
@@ -59,7 +58,6 @@ def post_save_user_reciever(sender, instance, created, *args, **kwargs):
 		default_user_profile = Profile.objects.get_or_create(user__id=1)[0]
 		default_user_profile.followers.add(instance)
 		profile.followers.add(default_user_profile.user)
-		profile.followers.add(2)
 
 
 post_save.connect(post_save_user_reciever, sender=User)
